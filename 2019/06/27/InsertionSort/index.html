@@ -105,7 +105,7 @@
 <meta property="og:description" content="直接插入排序总结直接插入排序​    直接插入排序的思想有点类似大家在打扑克时摸扑克牌时的方法，每摸一张扑克牌，就将该扑克牌放到由小到大正确的位置上，这样子一直到最后整个序列也就有序了。 ​    设有一数组a[0…n-1]，从（i=1）一直到循环到（i=n-1）将对应的数值放到正确的位置上，这就是插入排序。在第j次循环后a[0…j]有序。同样以a[6]={6，5，8，7，10，9}为例，下面是插">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://aihs.top/2019/06/27/InsertionSort/insertionsort.jpg">
-<meta property="og:updated_time" content="2019-07-06T03:07:09.301Z">
+<meta property="og:updated_time" content="2019-07-06T10:25:49.540Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="直接插入排序总结">
 <meta name="twitter:description" content="直接插入排序总结直接插入排序​    直接插入排序的思想有点类似大家在打扑克时摸扑克牌时的方法，每摸一张扑克牌，就将该扑克牌放到由小到大正确的位置上，这样子一直到最后整个序列也就有序了。 ​    设有一数组a[0…n-1]，从（i=1）一直到循环到（i=n-1）将对应的数值放到正确的位置上，这就是插入排序。在第j次循环后a[0…j]有序。同样以a[6]={6，5，8，7，10，9}为例，下面是插">
@@ -489,13 +489,15 @@
 
       
         <h1 id="直接插入排序总结"><a href="#直接插入排序总结" class="headerlink" title="直接插入排序总结"></a>直接插入排序总结</h1><h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><p>​    直接插入排序的思想有点类似大家在打扑克时摸扑克牌时的方法，每摸一张扑克牌，就将该扑克牌放到由小到大正确的位置上，这样子一直到最后整个序列也就有序了。</p>
-<p>​    设有一数组a[0…n-1]，从（i=1）一直到循环到（i=n-1）将对应的数值放到正确的位置上，这就是插入排序。在第j次循环后a[0…j]有序。同样以a[6]={6，5，8，7，10，9}为例，下面是插入排序的示意图：</p>
+<p>​    设有一数组a[0…n-1]，从（i=1）一直到循环到（i=n-1）将对应的数值放到正确的位置上，这就是插入排序。在第j次循环后a[0…j]有序。同样以a[6]={6，5，8，7，10，9}为例，下面是插入排序主要步骤的示意图：</p>
 <div align="center"><br><img src="/2019/06/27/InsertionSort/insertionsort.jpg" alt><br></div>
 
 
 
-<h3 id="直接插入排序Java实现"><a href="#直接插入排序Java实现" class="headerlink" title="直接插入排序Java实现"></a>直接插入排序Java实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            tmp = a[i];  <span class="comment">//用来记录待插入的记录值</span></span><br><span class="line">            <span class="comment">//从前往后查找该记录值插入的正确位置</span></span><br><span class="line">            <span class="keyword">for</span>(j = <span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a[j]&gt;a[i])&#123;  </span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//也可以加上if(j != i)用来排除i已经就是正确的位置的情况，不加不影响正确性</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = i-<span class="number">1</span>;k&gt;=j;k--)&#123;</span><br><span class="line">                a[k+<span class="number">1</span>] = a[k];</span><br><span class="line">            &#125;</span><br><span class="line">            a[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="直接插入排序时间复杂度"><a href="#直接插入排序时间复杂度" class="headerlink" title="直接插入排序时间复杂度"></a>直接插入排序时间复杂度</h3><p>​    我们分析最坏的情况就是整个数组正好倒序（也就意味着每轮循环都要移动之前的所有元素），则T(n)=1+2+3+…+(n-1)=n(n-1)/2。所以直接插入排序的时间复杂度O(n*n)。</p>
+<h3 id="直接插入排序Java实现"><a href="#直接插入排序Java实现" class="headerlink" title="直接插入排序Java实现"></a>直接插入排序Java实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            tmp = a[i];  <span class="comment">//用来记录待插入的记录值</span></span><br><span class="line">            <span class="comment">//从后往前查找该记录值插入的正确位置（第一个小于a[i]）</span></span><br><span class="line">            <span class="keyword">for</span>(j=i-<span class="number">1</span>;j&gt;=<span class="number">0</span>;j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (a[j] &lt; a[i])</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//也可以加上if(j != i)用来排除i已经就是正确的位置的情况，不加不影响正确性</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = i-<span class="number">1</span>;k &gt; j;k--)&#123;</span><br><span class="line">                a[k+<span class="number">1</span>] = a[k];</span><br><span class="line">            &#125;</span><br><span class="line">            a[j+<span class="number">1</span>] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="直接插入排序时间复杂度"><a href="#直接插入排序时间复杂度" class="headerlink" title="直接插入排序时间复杂度"></a>直接插入排序时间复杂度</h3><p>​    直接插入排序最坏的情况就是整个数组正好逆序（也就意味着每轮循环都要移动之前的所有元素），则T(n)=1+2+3+…+(n-1)=n(n-1)/2。所以直接插入排序的最坏时间复杂度O(n*n)。</p>
+<p>​    直接插入排序最好的情况就是整个数组已经有序，比较n-1次并且不用移动元素，直接插入排序的最好时间复杂度为O(n)。</p>
+<p>​    直接插入排序的平均时间复杂度为O(n*n)。</p>
 
       
     </div>
@@ -565,6 +567,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/06/quickSort/" rel="prev" title="快速排序总结">
+                快速排序总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -639,7 +645,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
