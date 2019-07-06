@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[直接插入排序总结]]></title>
+    <url>%2F2019%2F06%2F27%2FInsertionSort%2F</url>
+    <content type="text"><![CDATA[直接插入排序总结直接插入排序​ 直接插入排序的思想有点类似大家在打扑克时摸扑克牌时的方法，每摸一张扑克牌，就将该扑克牌放到由小到大正确的位置上，这样子一直到最后整个序列也就有序了。 ​ 设有一数组a[0…n-1]，从（i=1）一直到循环到（i=n-1）将对应的数值放到正确的位置上，这就是插入排序。在第j次循环后a[0…j]有序。同样以a[6]={6，5，8，7，10，9}为例，下面是插入排序的示意图： 直接插入排序Java实现1234567891011121314151617181920public class InsertionSort &#123; public static void insertionSort(int[] a)&#123; int j = 0; int tmp = 0; for(int i = 1;i&lt;a.length;i++)&#123; tmp = a[i]; //用来记录待插入的记录值 //从前往后查找该记录值插入的正确位置 for(j = 0;j&lt;i;j++)&#123; if(a[j]&gt;a[i])&#123; break; &#125; &#125; //也可以加上if(j != i)用来排除i已经就是正确的位置的情况，不加不影响正确性 for(int k = i-1;k&gt;=j;k--)&#123; a[k+1] = a[k]; &#125; a[j] = tmp; &#125; &#125;&#125; 直接插入排序时间复杂度​ 我们分析最坏的情况就是整个数组正好倒序（也就意味着每轮循环都要移动之前的所有元素），则T(n)=1+2+3+…+(n-1)=n(n-1)/2。所以直接插入排序的时间复杂度O(n*n)。]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[冒泡排序总结]]></title>
     <url>%2F2019%2F06%2F26%2FBubbleSort%2F</url>
-    <content type="text"><![CDATA[冒泡排序总结冒泡排序​ 冒泡排序的主要思想是：数组a[0…n-1]依次比较相邻项，数值大者将不断后移（就像烧开的水不停向上冒泡一样），第i轮比较将使得a[n-i…n-1]有序，最多在n-1轮时整个数组将有序。 ​ 下面我们以a[7]={6，5，8，7，10，9}为例，下面是整个过程的示意图： 冒泡排序Java实现1234567891011121314public class BubbleSort&#123; public static bubbleSort(int[] a)&#123; int tmp = 0; for(int i = a.length-1;i &gt; 0;i--)&#123; for(int j = 0;j &lt; i;j++)&#123; if(a[j] &gt; a[j+1])&#123; tmp = a[j+1]; a[j+1] = a[j]; a[j] = tmp; &#125; &#125; &#125; &#125;&#125; 冒泡排序改进​ 从上面的例子中我们发现在第一轮比较完就已经有序了，但是按上面冒泡排序的实现还是会进行四轮比较，这大大浪费了时间。 ​ 改进方向：我们发现当序列有序后做一轮相邻比较下来是不会发生swap操作的，所以在这里我们可以用一个flag来表示一轮比较下来是否发生了swap操作。如果没有没有发生swap操作，就说明序列已经有序了，直接break就行啦。 ​ 改进的冒泡排序算法Java实现如下： 12345678910111213141516171819public class BubbleSort &#123; public static void BubbleSort(int[] a)&#123; int tmp = 0; boolean flag; for(int i = a.length-1;i &gt; 0;i--)&#123; flag = false; for(int j = 0;j &lt; i;j++)&#123; if(a[j] &gt; a[j+1])&#123; flag = true; tmp = a[j+1]; a[j+1] = a[j]; a[j] = tmp; &#125; &#125; if(!flag) break; &#125; &#125;&#125; 冒泡排序时间复杂度​ 我们分析最坏复杂度，T(n)=(n-1)+(n-2)+(n-3)+…+1=n(n-1)/2，所以冒泡排序的时间复杂度为O(n*n)。]]></content>
+    <content type="text"><![CDATA[冒泡排序总结冒泡排序​ 冒泡排序的主要思想是：数组a[0…n-1]依次比较相邻项，数值大者将不断后移（就像烧开的水不停向上冒泡一样），第i轮比较将使得a[n-i…n-1]有序，最多在n-1轮时整个数组将有序。 ​ 下面我们以a[7]={6，5，8，7，10，9}为例，下面是整个过程的示意图： 冒泡排序Java实现123456789101112131415public class BubbleSort&#123; public static void bubbleSort(int[] a)&#123; int tmp = 0; for(int i = a.length-1;i &gt; 0;i--)&#123; for(int j = 0;j &lt; i;j++)&#123; if(a[j] &gt; a[j+1])&#123; //如果逆序则交换 tmp = a[j+1]; a[j+1] = a[j]; a[j] = tmp; &#125; &#125; &#125; &#125;&#125; 冒泡排序改进​ 从上面的例子中我们发现在第一轮比较完就已经有序了，但是按上面冒泡排序的实现还是会进行四轮比较，这大大浪费了时间。 ​ 改进方向：我们发现当序列有序后做一轮相邻比较下来是不会发生swap操作的，所以在这里我们可以用一个flag来表示一轮比较下来是否发生了swap操作。如果没有没有发生swap操作，就说明序列已经有序了，直接break就行啦。 ​ 改进的冒泡排序算法Java实现如下： 1234567891011121314151617181920public class BubbleSort &#123; public static void BubbleSort(int[] a)&#123; int tmp = 0; boolean flag; for(int i = a.length-1;i &gt; 0;i--)&#123; flag = false; for(int j = 0;j &lt; i;j++)&#123; if(a[j] &gt; a[j+1])&#123; //如果逆序则交换 flag = true; tmp = a[j+1]; a[j+1] = a[j]; a[j] = tmp; &#125; &#125; if(!flag) //一轮比较下来如果没有发生交换说明已经有序了 break; &#125; &#125;&#125; 冒泡排序时间复杂度​ 我们分析最坏复杂度，T(n)=(n-1)+(n-2)+(n-3)+…+1=n(n-1)/2，所以冒泡排序的时间复杂度为O(n*n)。]]></content>
       <categories>
         <category>算法</category>
       </categories>
